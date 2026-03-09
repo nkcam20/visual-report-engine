@@ -35,6 +35,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Print Controls - Hidden when printing */}
       <div className="no-print fixed top-4 right-4 z-50 flex gap-2">
+        <Link to="/game">
+          <Button variant="secondary" className="shadow-lg">
+            <Gamepad2 className="w-4 h-4 mr-2" />
+            Play Game
+          </Button>
+        </Link>
         <Button onClick={handlePrint} className="shadow-lg">
           <Printer className="w-4 h-4 mr-2" />
           Print / Save as PDF
