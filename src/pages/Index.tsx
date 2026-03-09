@@ -23,7 +23,8 @@ import FutureEnhancementsSection from '@/components/report/sections/FutureEnhanc
 import ConclusionSection from '@/components/report/sections/ConclusionSection';
 import ReferencesSection from '@/components/report/sections/ReferencesSection';
 import { Button } from '@/components/ui/button';
-import { Printer, Download } from 'lucide-react';
+import { Printer, Gamepad2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const handlePrint = () => {
