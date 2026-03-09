@@ -23,7 +23,8 @@ import FutureEnhancementsSection from '@/components/report/sections/FutureEnhanc
 import ConclusionSection from '@/components/report/sections/ConclusionSection';
 import ReferencesSection from '@/components/report/sections/ReferencesSection';
 import { Button } from '@/components/ui/button';
-import { Printer, Download } from 'lucide-react';
+import { Printer, Gamepad2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const handlePrint = () => {
@@ -34,6 +35,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Print Controls - Hidden when printing */}
       <div className="no-print fixed top-4 right-4 z-50 flex gap-2">
+        <Link to="/game">
+          <Button variant="secondary" className="shadow-lg">
+            <Gamepad2 className="w-4 h-4 mr-2" />
+            Play Game
+          </Button>
+        </Link>
         <Button onClick={handlePrint} className="shadow-lg">
           <Printer className="w-4 h-4 mr-2" />
           Print / Save as PDF
