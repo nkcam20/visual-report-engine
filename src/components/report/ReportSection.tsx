@@ -16,7 +16,7 @@ const ReportSection: React.FC<SectionProps> = ({ number, title, children, pageSt
       </h2>
       {children}
       <p className="mt-8 text-sm text-muted-foreground text-center">
-        AI-Powered Chess Game — Nanda Kumar — Page {pageStart} of 50
+        AI-Powered Chess Game — Nanda Kumar — Page {pageStart} of 100
       </p>
     </div>
   );
