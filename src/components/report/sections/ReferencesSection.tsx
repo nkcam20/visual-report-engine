@@ -178,7 +178,7 @@ const ReferencesSection: React.FC = () => {
             </tr>
             <tr>
               <td className="font-medium">Total Pages</td>
-              <td>50</td>
+              <td>100</td>
             </tr>
           </tbody>
         </table>
