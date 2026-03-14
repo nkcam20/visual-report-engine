@@ -21,6 +21,7 @@ const tocItems: TOCItem[] = [
       { title: '4.3 Project Relevance', page: 9 },
       { title: '4.4 Problem Statement', page: 10 },
       { title: '4.5 Scope and Limitations', page: 11 },
+      { title: '4.6 Project Motivation', page: 11 },
     ]
   },
   { 
