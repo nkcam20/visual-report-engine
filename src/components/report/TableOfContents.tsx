@@ -228,7 +228,7 @@ const TableOfContents: React.FC = () => {
       </div>
 
       <p className="mt-8 text-sm text-muted-foreground text-center">
-        AI-Powered Chess Game — Nanda Kumar — Page 2 of 100
+        AI-Powered Chess Game — Nanda Kumar — Page 2 of 150
       </p>
     </div>
   );

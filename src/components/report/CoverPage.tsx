@@ -59,7 +59,7 @@ const CoverPage: React.FC = () => {
 
         {/* Page Number */}
         <p className="mt-12 text-sm text-muted-foreground">
-          AI-Powered Chess Game — Nanda Kumar — Page 1 of 100
+          AI-Powered Chess Game — Nanda Kumar — Page 1 of 150
         </p>
       </div>
     </div>
