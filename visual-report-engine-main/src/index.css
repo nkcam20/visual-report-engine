@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Professional Report Design System */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
+
+    --primary: 210 100% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 30% 95%;
+    --secondary-foreground: 220 20% 15%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 35 100% 50%;
+    --accent-foreground: 220 20% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 210 100% 35%;
+
+    --radius: 0.5rem;
+
+    /* Report-specific colors */
+    --report-heading: 210 100% 25%;
+    --report-subheading: 210 60% 35%;
+    --report-code-bg: 220 15% 96%;
+    --report-code-border: 220 15% 88%;
+    --report-table-header: 210 100% 35%;
+    --report-table-stripe: 210 30% 97%;
+    --report-diagram-bg: 210 40% 98%;
+    --report-diagram-border: 210 60% 80%;
+    --report-highlight: 45 100% 90%;
+    --report-success: 145 65% 40%;
+    --report-warning: 35 100% 50%;
+    --report-info: 200 100% 45%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  .avoid-break {
+    page-break-inside: avoid;
+  }
+}
+
+/* Report Typography */
+@layer components {
+  .report-container {
+    @apply max-w-4xl mx-auto px-8 py-12;
+  }
+
+  .report-title {
+    @apply text-4xl font-bold text-center mb-2;
+    color: hsl(var(--report-heading));
+  }
+
+  .report-subtitle {
+    @apply text-xl text-center mb-8;
+    color: hsl(var(--report-subheading));
+  }
+
+  .report-section-title {
+    @apply text-2xl font-bold mt-12 mb-6 pb-2 border-b-2;
+    color: hsl(var(--report-heading));
+    border-color: hsl(var(--primary));
+  }
+
+  .report-subsection-title {
+    @apply text-xl font-semibold mt-8 mb-4;
+    color: hsl(var(--report-subheading));
+  }
+
+  .report-paragraph {
+    @apply text-base leading-relaxed mb-4 text-justify;
+    color: hsl(var(--foreground));
+  }
+
+  .report-list {
+    @apply list-disc list-inside mb-4 space-y-2;
+  }
+
+  .report-list li {
+    @apply text-base leading-relaxed;
+  }
+
+  .report-code-block {
+    @apply p-4 rounded-lg mb-6 overflow-x-auto text-sm;
+    background: hsl(var(--report-code-bg));
+    border: 1px solid hsl(var(--report-code-border));
+  }
+
+  .report-inline-code {
+    @apply px-2 py-0.5 rounded text-sm font-medium;
+    background: hsl(var(--report-code-bg));
+    color: hsl(var(--primary));
+  }
+
+  .report-table {
+    @apply w-full mb-6 border-collapse;
+  }
+
+  .report-table th {
+    @apply px-4 py-3 text-left text-sm font-semibold;
+    background: hsl(var(--report-table-header));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .report-table td {
+    @apply px-4 py-3 text-sm border-b;
+    border-color: hsl(var(--border));
+  }
+
+  .report-table tr:nth-child(even) td {
+    background: hsl(var(--report-table-stripe));
+  }
+
+  .report-diagram {
+    @apply p-6 rounded-xl mb-6 flex flex-col items-center;
+    background: hsl(var(--report-diagram-bg));
+    border: 2px solid hsl(var(--report-diagram-border));
+  }
+
+  .report-diagram-title {
+    @apply text-sm font-semibold mb-4 text-center;
+    color: hsl(var(--report-subheading));
+  }
+
+  .report-note {
+    @apply p-4 rounded-lg mb-6 border-l-4;
+    background: hsl(var(--report-highlight));
+    border-color: hsl(var(--accent));
+  }
+
+  .report-info-box {
+    @apply p-4 rounded-lg mb-6 border-l-4;
+    background: hsl(200 100% 97%);
+    border-color: hsl(var(--report-info));
+  }
+
+  .report-success-box {
+    @apply p-4 rounded-lg mb-6 border-l-4;
+    background: hsl(145 65% 97%);
+    border-color: hsl(var(--report-success));
+  }
+
+  .flowchart-box {
+    @apply px-4 py-2 rounded-lg text-center text-sm font-medium;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .flowchart-box-secondary {
+    @apply px-4 py-2 rounded-lg text-center text-sm font-medium border-2;
+    background: hsl(var(--secondary));
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--primary));
+  }
+
+  .flowchart-arrow {
+    @apply text-2xl font-bold;
+    color: hsl(var(--primary));
+  }
+
+  .flowchart-connector {
+    @apply w-0.5 h-6 mx-auto;
+    background: hsl(var(--primary));
+  }
+}
