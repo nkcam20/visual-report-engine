@@ -89,6 +89,28 @@ const GameSidebar: React.FC<Props> = ({
         </div>
       </div>
 
+      {/* Recording */}
+      <div className="rounded-lg bg-card border border-border p-4 space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Gameplay Recording</h3>
+        <Button
+          variant={isRecording ? 'destructive' : 'default'}
+          size="sm"
+          onClick={onToggleRecording}
+          className="w-full"
+        >
+          <Circle className={`w-3 h-3 mr-2 ${isRecording ? 'fill-current animate-pulse' : ''}`} />
+          {isRecording ? 'Stop Recording' : 'Start Recording'}
+        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={onDownloadPgn} disabled={moveHistory.length === 0} className="flex-1">
+            <Download className="w-3 h-3 mr-1" /> PGN
+          </Button>
+          <Button variant="outline" size="sm" onClick={onDownloadJson} disabled={moveHistory.length === 0} className="flex-1">
+            <Download className="w-3 h-3 mr-1" /> JSON
+          </Button>
+        </div>
+      </div>
+
       {/* Move History */}
       <div className="rounded-lg bg-card border border-border p-4 flex-1 min-h-0">
         <h3 className="text-sm font-semibold text-muted-foreground mb-2">Move History</h3>
