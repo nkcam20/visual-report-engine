@@ -2,7 +2,7 @@ import React from 'react';
 import type { Move } from 'chess.js';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RotateCcw, RefreshCw, Loader2 } from 'lucide-react';
+import { RotateCcw, RefreshCw, Loader2, Clock } from 'lucide-react';
 import type { Difficulty } from '@/types/chess';
 
 interface Props {
@@ -12,10 +12,18 @@ interface Props {
   turn: string;
   isCheck: boolean;
   difficulty: Difficulty;
+  whiteTime: number;
+  blackTime: number;
   onDifficultyChange: (d: Difficulty) => void;
   onUndo: () => void;
   onReset: () => void;
 }
+
+const fmt = (s: number) => {
+  const m = Math.floor(Math.max(0, s) / 60);
+  const sec = Math.max(0, s) % 60;
+  return `${m}:${sec.toString().padStart(2, '0')}`;
+};
 
 const GameSidebar: React.FC<Props> = ({
   moveHistory, gameStatus, isThinking, turn, isCheck, difficulty,
