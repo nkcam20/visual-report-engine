@@ -124,10 +124,12 @@ export function useChessGame(difficulty: Difficulty = 'medium', playerColor: Pie
     }
   }, []);
 
+  const getPgn = useCallback(() => game.pgn(), [game]);
+
   return {
     fen, board: game.board(), selectedSquare, validMoves, lastMove,
     isThinking, moveHistory, gameStatus, promotionPending, turn: game.turn(),
     isCheck: game.isCheck(),
-    handleSquareClick, handlePromotion, undoMove, resetGame,
+    handleSquareClick, handlePromotion, undoMove, resetGame, getPgn,
   };
 }
