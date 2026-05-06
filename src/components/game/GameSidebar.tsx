@@ -2,7 +2,7 @@ import React from 'react';
 import type { Move } from 'chess.js';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RotateCcw, RefreshCw, Loader2, Clock } from 'lucide-react';
+import { RotateCcw, RefreshCw, Loader2, Clock, Download, Circle } from 'lucide-react';
 import type { Difficulty } from '@/types/chess';
 
 interface Props {
@@ -14,6 +14,10 @@ interface Props {
   difficulty: Difficulty;
   whiteTime: number;
   blackTime: number;
+  isRecording: boolean;
+  onToggleRecording: () => void;
+  onDownloadPgn: () => void;
+  onDownloadJson: () => void;
   onDifficultyChange: (d: Difficulty) => void;
   onUndo: () => void;
   onReset: () => void;
