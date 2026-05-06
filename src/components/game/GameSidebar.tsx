@@ -2,7 +2,7 @@ import React from 'react';
 import type { Move } from 'chess.js';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RotateCcw, RefreshCw, Loader2, Clock } from 'lucide-react';
+import { RotateCcw, RefreshCw, Loader2, Clock, Download, Circle } from 'lucide-react';
 import type { Difficulty } from '@/types/chess';
 
 interface Props {
@@ -14,6 +14,10 @@ interface Props {
   difficulty: Difficulty;
   whiteTime: number;
   blackTime: number;
+  isRecording: boolean;
+  onToggleRecording: () => void;
+  onDownloadPgn: () => void;
+  onDownloadJson: () => void;
   onDifficultyChange: (d: Difficulty) => void;
   onUndo: () => void;
   onReset: () => void;
@@ -27,7 +31,8 @@ const fmt = (s: number) => {
 
 const GameSidebar: React.FC<Props> = ({
   moveHistory, gameStatus, isThinking, turn, isCheck, difficulty,
-  whiteTime, blackTime, onDifficultyChange, onUndo, onReset,
+  whiteTime, blackTime, isRecording, onToggleRecording,
+  onDownloadPgn, onDownloadJson, onDifficultyChange, onUndo, onReset,
 }) => {
   const statusText = (() => {
     if (gameStatus === 'won') return '🎉 You win!';
@@ -80,6 +85,28 @@ const GameSidebar: React.FC<Props> = ({
           </Button>
           <Button variant="outline" size="sm" onClick={onReset} disabled={isThinking} className="flex-1">
             <RefreshCw className="w-4 h-4 mr-1" /> New
+          </Button>
+        </div>
+      </div>
+
+      {/* Recording */}
+      <div className="rounded-lg bg-card border border-border p-4 space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Gameplay Recording</h3>
+        <Button
+          variant={isRecording ? 'destructive' : 'default'}
+          size="sm"
+          onClick={onToggleRecording}
+          className="w-full"
+        >
+          <Circle className={`w-3 h-3 mr-2 ${isRecording ? 'fill-current animate-pulse' : ''}`} />
+          {isRecording ? 'Stop Recording' : 'Start Recording'}
+        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={onDownloadPgn} disabled={moveHistory.length === 0} className="flex-1">
+            <Download className="w-3 h-3 mr-1" /> PGN
+          </Button>
+          <Button variant="outline" size="sm" onClick={onDownloadJson} disabled={moveHistory.length === 0} className="flex-1">
+            <Download className="w-3 h-3 mr-1" /> JSON
           </Button>
         </div>
       </div>
