@@ -31,7 +31,8 @@ const fmt = (s: number) => {
 
 const GameSidebar: React.FC<Props> = ({
   moveHistory, gameStatus, isThinking, turn, isCheck, difficulty,
-  whiteTime, blackTime, onDifficultyChange, onUndo, onReset,
+  whiteTime, blackTime, isRecording, onToggleRecording,
+  onDownloadPgn, onDownloadJson, onDifficultyChange, onUndo, onReset,
 }) => {
   const statusText = (() => {
     if (gameStatus === 'won') return '🎉 You win!';
