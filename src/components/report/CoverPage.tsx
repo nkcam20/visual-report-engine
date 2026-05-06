@@ -35,7 +35,7 @@ const CoverPage: React.FC = () => {
             <tbody>
               <tr>
                 <td className="py-2 pr-8 font-semibold text-muted-foreground">Author:</td>
-                <td className="py-2 font-medium">Nanda Kumar</td>
+                <td className="py-2 font-medium">Sawthy .A</td>
               </tr>
               <tr>
                 <td className="py-2 pr-8 font-semibold text-muted-foreground">Project Type:</td>
@@ -59,7 +59,7 @@ const CoverPage: React.FC = () => {
 
         {/* Page Number */}
         <p className="mt-12 text-sm text-muted-foreground">
-          AI-Powered Chess Game — Nanda Kumar — Page 1 of 150
+          AI-Powered Chess Game — Sawthy .A — Page 1 of 150
         </p>
       </div>
     </div>

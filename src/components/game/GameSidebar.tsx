@@ -2,7 +2,7 @@ import React from 'react';
 import type { Move } from 'chess.js';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RotateCcw, RefreshCw, Loader2 } from 'lucide-react';
+import { RotateCcw, RefreshCw, Loader2, Clock } from 'lucide-react';
 import type { Difficulty } from '@/types/chess';
 
 interface Props {
@@ -12,20 +12,30 @@ interface Props {
   turn: string;
   isCheck: boolean;
   difficulty: Difficulty;
+  whiteTime: number;
+  blackTime: number;
   onDifficultyChange: (d: Difficulty) => void;
   onUndo: () => void;
   onReset: () => void;
 }
 
+const fmt = (s: number) => {
+  const m = Math.floor(Math.max(0, s) / 60);
+  const sec = Math.max(0, s) % 60;
+  return `${m}:${sec.toString().padStart(2, '0')}`;
+};
+
 const GameSidebar: React.FC<Props> = ({
   moveHistory, gameStatus, isThinking, turn, isCheck, difficulty,
-  onDifficultyChange, onUndo, onReset,
+  whiteTime, blackTime, onDifficultyChange, onUndo, onReset,
 }) => {
   const statusText = (() => {
     if (gameStatus === 'won') return '🎉 You win!';
     if (gameStatus === 'lost') return '😔 You lost!';
     if (gameStatus === 'draw') return '🤝 Draw!';
     if (gameStatus === 'stalemate') return '🤝 Stalemate!';
+    if (gameStatus === 'timeout-w') return '⏰ White ran out of time!';
+    if (gameStatus === 'timeout-b') return '⏰ Black ran out of time!';
     if (isThinking) return '🤔 AI is thinking...';
     if (isCheck) return '⚠️ Check!';
     return turn === 'w' ? "White's turn" : "Black's turn";
@@ -33,6 +43,18 @@ const GameSidebar: React.FC<Props> = ({
 
   return (
     <div className="w-full lg:w-72 flex flex-col gap-4">
+      {/* Clocks */}
+      <div className="rounded-lg bg-card border border-border p-3 grid grid-cols-2 gap-2">
+        <div className={`text-center p-2 rounded ${turn === 'b' ? 'bg-primary/10' : ''}`}>
+          <div className="text-xs text-muted-foreground flex items-center justify-center gap-1"><Clock className="w-3 h-3" /> Black (AI)</div>
+          <div className={`text-2xl font-mono font-bold ${blackTime <= 30 ? 'text-destructive' : ''}`}>{fmt(blackTime)}</div>
+        </div>
+        <div className={`text-center p-2 rounded ${turn === 'w' ? 'bg-primary/10' : ''}`}>
+          <div className="text-xs text-muted-foreground flex items-center justify-center gap-1"><Clock className="w-3 h-3" /> White (You)</div>
+          <div className={`text-2xl font-mono font-bold ${whiteTime <= 30 ? 'text-destructive' : ''}`}>{fmt(whiteTime)}</div>
+        </div>
+      </div>
+
       {/* Status */}
       <div className="rounded-lg bg-card border border-border p-4 text-center">
         <p className="text-lg font-semibold">{statusText}</p>

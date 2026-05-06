@@ -162,7 +162,7 @@ const ReferencesSection: React.FC = () => {
             </tr>
             <tr>
               <td className="font-medium">Author</td>
-              <td>Nanda Kumar</td>
+              <td>Sawthy .A</td>
             </tr>
             <tr>
               <td className="font-medium">Institution</td>
